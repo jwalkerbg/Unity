@@ -50,9 +50,9 @@
 // Test Running Macros
 //-------------------------------------------------------
 
-#define TEST_PROTECT() (setjmp(Unity.AbortFrame) == 0)
+#define TEST_PROTECT() (true)
 
-#define TEST_ABORT() {longjmp(Unity.AbortFrame, 1);}
+#define TEST_ABORT() {return 1;}
 
 #ifndef RUN_TEST
 #define RUN_TEST(func, line_num) UnityDefaultTestRun(func, #func, line_num)
