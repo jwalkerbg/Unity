@@ -14,5 +14,5 @@ Changed files:
 * unity.h
 * unity_internals.h
 
-Some test are performed with modules, that were TDD'ed by setjmp/longjmp UNITY and their behavior
+Some tests had been performed with modules, that were TDD'ed by setjmp/longjmp UNITY and their behavior
 is the same now. I hope I did not introduced errors. Please test this and report any bugs you found.
