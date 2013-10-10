@@ -458,8 +458,8 @@ UNITY_BOOL UnityAssertDoubleIsNaN(const _UD actual,
 // Basic Fail and Ignore
 //-------------------------------------------------------
 
-#define UNITY_TEST_FAIL(line, message)   { return UnityFail(   (message), (UNITY_LINE_TYPE)line); }
-#define UNITY_TEST_IGNORE(line, message) { return UnityIgnore( (message), (UNITY_LINE_TYPE)line); }
+#define UNITY_TEST_FAIL(line, message)   { UnityFail(   (message), (UNITY_LINE_TYPE)line); return; }
+#define UNITY_TEST_IGNORE(line, message) { UnityIgnore( (message), (UNITY_LINE_TYPE)line); return; }
 
 //-------------------------------------------------------
 // Test Asserts
