@@ -8,7 +8,6 @@
 #define UNITY_INTERNALS_H
 
 #include <stdio.h>
-#include <setjmp.h>
 
 // Unity attempts to determine sizeof(various types)
 // based on UINT_MAX, ULONG_MAX, etc. These are typically
@@ -306,6 +305,8 @@ typedef enum
 } UNITY_DISPLAY_STYLE_T;
 
 typedef unsigned char UNITY_BOOL;
+#define UNITY_TRUE (!0)
+#define UNITY_FALSE (0)
 
 struct _Unity
 {
@@ -317,7 +318,6 @@ struct _Unity
     UNITY_COUNTER_TYPE TestIgnores;
     UNITY_COUNTER_TYPE CurrentTestFailed;
     UNITY_COUNTER_TYPE CurrentTestIgnored;
-    jmp_buf AbortFrame;
 };
 
 extern struct _Unity Unity;

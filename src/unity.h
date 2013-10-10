@@ -50,7 +50,7 @@
 // Test Running Macros
 //-------------------------------------------------------
 
-#define TEST_PROTECT() (true)
+#define TEST_PROTECT() (UNITY_TRUE)
 
 #define TEST_ABORT() {return 1;}
 
