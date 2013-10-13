@@ -9,6 +9,14 @@
 
 #define UNITY
 
+// float is not used in most of the use cases and should be excluded.
+// It most be excluded, because the clever XC8 generates division by zero
+// in sveral of UnityAsert functions
+#define UNITY_EXCLUDE_FLOAT
+
+// Let limits.h determines int lengths.
+#define UNITY_USE_LIMITS_H
+
 #include "unity_internals.h"
 
 //-------------------------------------------------------
