@@ -144,7 +144,14 @@ class UnityTestRunnerGenerator
     @options[:includes].flatten.uniq.compact.each do |inc|
       output.puts("#include #{inc.include?('<') ? inc : "\"#{inc.gsub('.h','')}.h\""}")
     end
+
+    # xc.h must be included if XC8 is compiling
+    # setjmp.h must not be included because generates #error for XC8.
+    output.puts('#if defined(__XC8)')
+    output.puts('#include <xc.h>')
+    output.puts('#else   // defined(__XC8)')
     output.puts('#include <setjmp.h>')
+    output.puts('#endif  // defined(__XC8)')
     output.puts('#include <stdio.h>')
     output.puts('#include "CException.h"') if @options[:plugins].include?(:cexception)
 	testfile_includes.delete("unity").delete("cmock")
