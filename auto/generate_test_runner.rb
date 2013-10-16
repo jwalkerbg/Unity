@@ -275,7 +275,12 @@ class UnityTestRunnerGenerator
   
   def create_main(output, filename, tests)
     output.puts("\n\n//=======MAIN=====")
+    output.puts('#if defined(__XC8)')
+    output.puts("void main(void)")
+    output.puts('#else   // defined(__XC8)')
     output.puts("int main(void)")
+    output.puts('#endif  // defined(__XC8)')
+
     output.puts("{")
     output.puts("  suite_setup();") unless @options[:suite_setup].nil?
     output.puts("  Unity.TestFile = \"#{filename}\";")
@@ -292,7 +297,11 @@ class UnityTestRunnerGenerator
         tests.each { |test| output.puts("  RUN_TEST(#{test[:test]}, #{test[:line_number]});") }
     end
     output.puts()
+    output.puts('#if defined(__XC8)')
+    output.puts("  #{@options[:suite_teardown].nil? ? "" : "suite_teardown"}UnityEnd();")
+    output.puts('#else   // defined(__XC8)')
     output.puts("  return #{@options[:suite_teardown].nil? ? "" : "suite_teardown"}(UnityEnd());")
+    output.puts('#endif  // defined(__XC8)')
     output.puts("}")
   end
 end
