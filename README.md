@@ -10,9 +10,7 @@ This is suitable (and a must too) for compilers that do not support setjmp/longj
 XC8 compier does not support them for PIC12/PIC16 microcontrollers.
 
 Changed files:
-* unity.c
-* unity.h
-* unity_internals.h
-
-Some tests had been performed with modules, that were TDD'ed by setjmp/longjmp UNITY and their behavior
-is the same now. I hope I did not introduced errors. Please test this and report any bugs you found.
+* src/unity.c
+* src/unity.h
+* src/unity_internals.h
+* auto/generate_test_runner.rb
