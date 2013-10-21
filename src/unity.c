@@ -14,7 +14,7 @@
 #define UNITY_SKIP_EXECUTION  { if ((Unity.CurrentTestFailed != 0) || (Unity.CurrentTestIgnored != 0)) {return 1;} }
 #define UNITY_PRINT_EOL       { UNITY_OUTPUT_CHAR('\n'); }
 
-struct _Unity Unity = { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 };
+struct _Unity Unity = { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 };
 
 const char* UnityStrNull     = "NULL";
 const char* UnityStrSpacer   = ". ";
@@ -1119,19 +1119,27 @@ void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int
     Unity.NumberOfTests++;
     if (TEST_PROTECT())
     {
-        setUp();
+        if (Unity.setUp != NULL)
+        {
+            Unity.setUp();
+        }
         Func();
     }
     if (TEST_PROTECT() && !(Unity.CurrentTestIgnored))
     {
-        tearDown();
+        if (Unity.tearDown != NULL)
+        {
+            Unity.tearDown();
+        }
     }
     UnityConcludeTest();
 }
 
 //-----------------------------------------------
-void UnityBegin(void)
+void UnityBegin(unity_void_fn up, unity_void_fn down)
 {
+    Unity.setUp = up;
+    Unity.tearDown = down;
     Unity.NumberOfTests = 0;
     Unity.TestFailures = 0;
     Unity.TestIgnores = 0;

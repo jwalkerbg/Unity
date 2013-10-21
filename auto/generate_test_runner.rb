@@ -247,7 +247,10 @@ class UnityTestRunnerGenerator
     output.puts("    CEXCEPTION_T e; \\") if cexception
     output.puts("    Try { \\") if cexception
     output.puts("      CMock_Init(); \\") unless (used_mocks.empty?) 
-    output.puts("      setUp(); \\")
+    output.puts("      if (Unity.setUp) \\")
+    output.puts("      { \\")
+    output.puts("        Unity.setUp(); \\")
+    output.puts("      } \\")
     output.puts("      TestFunc(#{va_args2}); \\")
     output.puts("      CMock_Verify(); \\") unless (used_mocks.empty?)
     output.puts("    } Catch(e) { TEST_ASSERT_EQUAL_HEX32_MESSAGE(CEXCEPTION_NONE, e, \"Unhandled Exception!\"); } \\") if cexception
@@ -255,7 +258,10 @@ class UnityTestRunnerGenerator
     output.puts("  CMock_Destroy(); \\") unless (used_mocks.empty?)
     output.puts("  if (TEST_PROTECT() && !TEST_IS_IGNORED) \\")
     output.puts("  { \\")
-    output.puts("    tearDown(); \\")
+    output.puts("    if (Unity.tearDown) \\")
+    output.puts("    { \\")
+    output.puts("      Unity.tearDown(); \\")
+    output.puts("    } \\")
     output.puts("  } \\")
     output.puts("  UnityConcludeTest(); \\")
     output.puts("}\n")
@@ -267,9 +273,15 @@ class UnityTestRunnerGenerator
     output.puts("{")
     output.puts("  CMock_Verify();") unless (used_mocks.empty?)
     output.puts("  CMock_Destroy();") unless (used_mocks.empty?)
-    output.puts("  tearDown();")
+    output.puts("  if (Unity.tearDown)")
+    output.puts("  {")
+    output.puts("    Unity.tearDown();")
+    output.puts("  }")
     output.puts("  CMock_Init();") unless (used_mocks.empty?) 
-    output.puts("  setUp();")
+    output.puts("  if (Unity.setUp)")
+    output.puts("  {")
+    output.puts("    Unity.setUp();")
+    output.puts("  }")
     output.puts("}")
   end
   
@@ -284,7 +296,7 @@ class UnityTestRunnerGenerator
     output.puts("{")
     output.puts("  suite_setup();") unless @options[:suite_setup].nil?
     output.puts("  Unity.TestFile = \"#{filename}\";")
-    output.puts("  UnityBegin();")
+    output.puts("  UnityBegin(setUp,tearDown);")
     if (@options[:use_param_tests])
       tests.each do |test|
         if ((test[:args].nil?) or (test[:args].empty?))

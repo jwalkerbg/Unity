@@ -308,10 +308,14 @@ typedef unsigned char UNITY_BOOL;
 #define UNITY_TRUE (!0)
 #define UNITY_FALSE (0)
 
+typedef void (*unity_void_fn)(void);
+
 struct _Unity
 {
     const char* TestFile;
     const char* CurrentTestName;
+    unity_void_fn setUp;
+    unity_void_fn tearDown;
     UNITY_LINE_TYPE CurrentTestLineNumber;
     UNITY_COUNTER_TYPE NumberOfTests;
     UNITY_COUNTER_TYPE TestFailures;
@@ -326,7 +330,7 @@ extern struct _Unity Unity;
 // Test Suite Management
 //-------------------------------------------------------
 
-void UnityBegin(void);
+void UnityBegin(unity_void_fn up, unity_void_fn down);
 int  UnityEnd(void);
 void UnityConcludeTest(void);
 void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int FuncLineNum);
