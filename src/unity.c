@@ -18,7 +18,7 @@ struct _Unity Unity = { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 };
 
 const char* UnityStrNull     = "NULL";
 const char* UnityStrSpacer   = ". ";
-const char* UnityStrExpected = " Expected ";
+const char* UnityStrExpected = "   Expected ";
 const char* UnityStrWas      = " Was ";
 const char* UnityStrTo       = " To ";
 const char* UnityStrElement  = " Element ";
@@ -263,14 +263,14 @@ void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
     UnityPrintNumber(line);
     UNITY_OUTPUT_CHAR(':');
     UnityPrint(Unity.CurrentTestName);
-    UNITY_OUTPUT_CHAR(':');
 }
 
 //-----------------------------------------------
 void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line)
 {
-    UnityTestResultsBegin(Unity.TestFile, line);
     UnityPrint("FAIL:");
+    UnityTestResultsBegin(Unity.TestFile, line);
+    UNITY_PRINT_EOL;
 }
 
 //-----------------------------------------------
@@ -282,8 +282,8 @@ void UnityConcludeTest(void)
     }
     else if (!Unity.CurrentTestFailed)
     {
+        UnityPrint("PASS:");
         UnityTestResultsBegin(Unity.TestFile, Unity.CurrentTestLineNumber);
-        UnityPrint("PASS");
         UNITY_PRINT_EOL;
     }
     else
@@ -1154,6 +1154,13 @@ void UnityBegin(unity_void_fn up, unity_void_fn down)
     Unity.TestIgnores = 0;
     Unity.CurrentTestFailed = 0;
     Unity.CurrentTestIgnored = 0;
+
+    UNITY_PRINT_EOL;
+    UnityPrint(Unity.TestFile);
+    UnityPrint(": START");
+    UNITY_PRINT_EOL;
+    UnityPrint("-----------------------");
+    UNITY_PRINT_EOL;
 }
 
 //-----------------------------------------------
