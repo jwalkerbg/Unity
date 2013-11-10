@@ -20,6 +20,10 @@ const char* UnityStrNull     = "NULL";
 const char* UnityStrSpacer   = ". ";
 const char* UnityStrExpected = " Expected ";
 const char* UnityStrWas      = " Was ";
+const char* UnityStrExpectedGreaterThan= " Expected greater than ";
+const char* UnityStrExpectedGreaterThanOrEqualTo= " Expected greater than or equal to ";
+const char* UnityStrExpectedLessThanOrEqualTo= " Expected less than or equal to ";
+const char* UnityStrExpectedLessThan= " Expected less than ";
 const char* UnityStrTo       = " To ";
 const char* UnityStrElement  = " Element ";
 const char* UnityStrByte     = " Byte ";
@@ -403,6 +407,174 @@ UNITY_BOOL UnityAssertEqualNumber(const _U_SINT expected,
         UnityTestResultsFailBegin(lineNumber);
         UnityPrint(UnityStrExpected);
         UnityPrintNumberByStyle(expected, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertGreaterNumber(const _U_SINT border,
+                            const _U_SINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border >= actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedGreaterThan);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertGreaterOrEqualNumber(const _U_SINT border,
+                            const _U_SINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border > actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedGreaterThanOrEqualTo);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertLessOrEqualNumber(const _U_SINT border,
+                            const _U_SINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border < actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedLessThanOrEqualTo);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertLessNumber(const _U_SINT border,
+                            const _U_SINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border <= actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedLessThan);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertGreaterUnsignedNumber(const _U_UINT border,
+                            const _U_UINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border >= actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedGreaterThan);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertGreaterOrEqualUnsignedNumber(const _U_UINT border,
+                            const _U_UINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border > actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedGreaterThanOrEqualTo);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertLessOrEqualUnsignedNumber(const _U_UINT border,
+                            const _U_UINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border < actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedLessThanOrEqualTo);
+        UnityPrintNumberByStyle(border, style);
+        UnityPrint(UnityStrWas);
+        UnityPrintNumberByStyle(actual, style);
+        UnityAddMsgIfSpecified(msg);
+        UNITY_FAIL_AND_BAIL;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+UNITY_BOOL UnityAssertLessUnsignedNumber(const _U_UINT border,
+                            const _U_UINT actual,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber,
+                            const UNITY_DISPLAY_STYLE_T style)
+{
+    UNITY_SKIP_EXECUTION;
+
+    if (border <= actual) {
+        UnityTestResultsFailBegin(lineNumber);
+        UnityPrint(UnityStrExpectedLessThan);
+        UnityPrintNumberByStyle(border, style);
         UnityPrint(UnityStrWas);
         UnityPrintNumberByStyle(actual, style);
         UnityAddMsgIfSpecified(msg);
