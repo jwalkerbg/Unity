@@ -310,7 +310,7 @@ class UnityTestRunnerGenerator
     end
     output.puts()
     output.puts('#if defined(__XC8)')
-    output.puts("  #{@options[:suite_teardown].nil? ? "" : "suite_teardown"}UnityEnd();")
+    output.puts("  #{@options[:suite_teardown].nil? ? "" : "suite_teardown"}(UnityEnd());")
     output.puts('#else   // defined(__XC8)')
     output.puts("  return #{@options[:suite_teardown].nil? ? "" : "suite_teardown"}(UnityEnd());")
     output.puts('#endif  // defined(__XC8)')
