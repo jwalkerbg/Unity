@@ -235,6 +235,12 @@ class UnityTestRunnerGenerator
     cexception = @options[:plugins].include? :cexception
     va_args1   = @options[:use_param_tests] ? ', ...' : ''
     va_args2   = @options[:use_param_tests] ? '__VA_ARGS__' : ''
+    output.puts("\n//=============CLRWDT macro for XC8 only=============")
+    output.puts('#if defined(__XC8)')
+    output.puts('#define ClearWDT() CLRWDT()')
+    output.puts('#else   // defined(__XC8)')
+    output.puts('#define ClearWDT()')
+    output.puts('#endif  // defined(__XC8)')
     output.puts("\n//=======Test Runner Used To Run Each Test Below=====")
     output.puts("#define RUN_TEST_NO_ARGS") if @options[:use_param_tests] 
     output.puts("#define RUN_TEST(TestFunc, TestLineNum#{va_args1}) \\")
@@ -252,6 +258,7 @@ class UnityTestRunnerGenerator
     output.puts("        Unity.setUp(); \\")
     output.puts("      } \\")
     output.puts("      TestFunc(#{va_args2}); \\")
+    output.puts("      ClearWDT(); \\") if @options[:embed_clrwdt_in_test_runner]
     output.puts("      CMock_Verify(); \\") unless (used_mocks.empty?)
     output.puts("    } Catch(e) { TEST_ASSERT_EQUAL_HEX32_MESSAGE(CEXCEPTION_NONE, e, \"Unhandled Exception!\"); } \\") if cexception
     output.puts("  } \\")
