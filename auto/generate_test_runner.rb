@@ -57,9 +57,9 @@ class UnityTestRunnerGenerator
   def generate(input_file, output_file, tests, used_mocks, testfile_includes)
     File.open(output_file, 'w') do |output|
       create_header(output, used_mocks, testfile_includes)
+      create_suite_setup_and_teardown(output)
       create_externs(output, tests, used_mocks)
       create_mock_management(output, used_mocks)
-      create_suite_setup_and_teardown(output)
       create_reset(output, used_mocks)
       create_main(output, input_file, tests)
     end
