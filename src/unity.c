@@ -353,7 +353,7 @@ int UnityCheckArraysForNull(UNITY_PTR_ATTRIBUTE const void* expected, UNITY_PTR_
         UnityTestResultsFailBegin(lineNumber);
         UnityPrint(UnityStrNullPointerForExpected);
         UnityAddMsgIfSpecified(msg);
-        UNITY_FAIL_AND_BAIL;    // return 1;
+        UNITY_FAIL_AND_BAIL;
     }
 
     //throw error if just actual is NULL
@@ -362,10 +362,10 @@ int UnityCheckArraysForNull(UNITY_PTR_ATTRIBUTE const void* expected, UNITY_PTR_
         UnityTestResultsFailBegin(lineNumber);
         UnityPrint(UnityStrNullPointerForActual);
         UnityAddMsgIfSpecified(msg);
-        UNITY_FAIL_AND_BAIL;    // return 1;
+        UNITY_FAIL_AND_BAIL;
     }
 
-    //return false if neither is NULL - checks of contents permitted
+    //return false if neither is NULL
     return 0;
 }
 
@@ -1322,7 +1322,7 @@ void UnityBegin(unity_void_fn up, unity_void_fn down)
 {
     //Clear the entire Unity structure
     unsigned char i;
-    char* Buffer = (char*)(void*)(&Unity);
+    char* Buffer = (char*)((void*)(&Unity));
 
     for (i = 0; i < sizeof(Unity); i++) {
         *Buffer++ = 0;
