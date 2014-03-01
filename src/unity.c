@@ -14,7 +14,7 @@
 #define UNITY_SKIP_EXECUTION  { if ((Unity.CurrentTestFailed != 0) || (Unity.CurrentTestIgnored != 0)) {return 1;} }
 #define UNITY_PRINT_EOL       { UNITY_OUTPUT_CHAR('\n'); }
 
-struct _Unity Unity = { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 };
+struct _Unity Unity;
 
 const char* UnityStrNull     = "NULL";
 const char* UnityStrSpacer   = ". ";
@@ -1320,13 +1320,15 @@ void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int
 //-----------------------------------------------
 void UnityBegin(unity_void_fn up, unity_void_fn down)
 {
+    //Clear the entire Unity structure
+    unsigned char i;
+    char* Buffer = (char*)(void*)(&Unity);
+
+    for (i = 0; i < sizeof(Unity); i++) {
+        *Buffer++ = 0;
+    }
     Unity.setUp = up;
     Unity.tearDown = down;
-    Unity.NumberOfTests = 0;
-    Unity.TestFailures = 0;
-    Unity.TestIgnores = 0;
-    Unity.CurrentTestFailed = 0;
-    Unity.CurrentTestIgnored = 0;
 }
 
 //-----------------------------------------------
