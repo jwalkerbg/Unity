@@ -123,7 +123,7 @@ class UnityTestRunnerGenerator
     #parse out includes
     includes = source.scan(/^\s*#include\s+\"\s*(.+)\.[hH]\s*\"/).flatten
 	brackets_includes = source.scan(/^\s*#include\s+<\s*(.+)\s*>/).flatten
-	brackets_includes.each { |inc| includes << '<' + inc +'>' }		
+	brackets_includes.each { |inc| includes << '<' + inc +'>' }
 	return includes
   end
 
@@ -155,8 +155,8 @@ class UnityTestRunnerGenerator
     output.puts('#include <stdio.h>')
     output.puts('#include "CException.h"') if @options[:plugins].include?(:cexception)
 	testfile_includes.delete("unity").delete("cmock")
-	testrunner_includes = testfile_includes - mocks	
-	testrunner_includes.each do |inc|	  
+	testrunner_includes = testfile_includes - mocks
+	testrunner_includes.each do |inc|
 	  output.puts("#include #{inc.include?('<') ? inc : "\"#{inc.gsub('.h','')}.h\""}")
 	end
     mocks.each do |mock|
