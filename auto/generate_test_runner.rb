@@ -61,7 +61,7 @@ class UnityTestRunnerGenerator
       create_externs(output, tests, used_mocks)
       create_mock_management(output, used_mocks)
       create_reset(output, used_mocks)
-      create_main(output, input_file, tests)
+      create_main(output, input_file, tests, used_mocks)
     end
   end
 
@@ -154,11 +154,11 @@ class UnityTestRunnerGenerator
     output.puts('#endif  // defined(__XC8)')
     output.puts('#include <stdio.h>')
     output.puts('#include "CException.h"') if @options[:plugins].include?(:cexception)
-	testfile_includes.delete("unity").delete("cmock")
-	testrunner_includes = testfile_includes - mocks
-	testrunner_includes.each do |inc|
-	  output.puts("#include #{inc.include?('<') ? inc : "\"#{inc.gsub('.h','')}.h\""}")
-	end
+    testfile_includes.delete("unity").delete("cmock")
+    testrunner_includes = testfile_includes - mocks
+    testrunner_includes.each do |inc|
+      output.puts("#include #{inc.include?('<') ? inc : "\"#{inc.gsub('.h','')}.h\""}")
+    end
     mocks.each do |mock|
       output.puts("#include \"#{mock.gsub('.h','')}.h\"")
     end
@@ -292,7 +292,7 @@ class UnityTestRunnerGenerator
     output.puts("}")
   end
 
-  def create_main(output, filename, tests)
+  def create_main(output, filename, tests, used_mocks)
     output.puts("\n\n//=======MAIN=====")
     output.puts('#if defined(__XC8)')
     output.puts("void main(void)")
@@ -316,6 +316,7 @@ class UnityTestRunnerGenerator
         tests.each { |test| output.puts("  RUN_TEST(#{test[:test]}, #{test[:line_number]});") }
     end
     output.puts()
+    output.puts(" CMock_Guts_MemFreeFinal();") unless used_mocks.empty?
     output.puts('#if defined(__XC8)')
     output.puts("  #{@options[:suite_teardown].nil? ? "" : "suite_teardown"}(UnityEnd());")
     output.puts('#else   // defined(__XC8)')
