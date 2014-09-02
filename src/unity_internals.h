@@ -247,6 +247,14 @@ typedef UNITY_DOUBLE_TYPE _UD;
 extern int UNITY_OUTPUT_CHAR(int);
 #endif
 
+#ifndef UNITY_OUTPUT_START
+#define UNITY_OUTPUT_START()
+#endif
+
+#ifndef UNITY_OUTPUT_COMPLETE
+#define UNITY_OUTPUT_COMPLETE()
+#endif
+
 //-------------------------------------------------------
 // Footprint
 //-------------------------------------------------------

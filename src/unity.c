@@ -1330,6 +1330,8 @@ void UnityBegin(const char* filename, unity_void_fn up, unity_void_fn down)
     Unity.TestFile = filename;
     Unity.setUp = up;
     Unity.tearDown = down;
+
+    UNITY_OUTPUT_START();
 }
 
 //-----------------------------------------------
@@ -1353,5 +1355,6 @@ int UnityEnd(void)
         UnityPrintFail();
     }
     UNITY_PRINT_EOL;
+    UNITY_OUTPUT_COMPLETE();
     return (int)(Unity.TestFailures);
 }
