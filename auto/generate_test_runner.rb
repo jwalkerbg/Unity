@@ -79,7 +79,7 @@ class UnityTestRunnerGenerator
 
     lines.each_with_index do |line, index|
       #find tests
-      if line =~ /^((?:\s*TEST_CASE\s*\(.*?\)\s*)*)\s*void\s+(test.*?)\s*\(\s*(.*)\s*\)/
+      if line =~ /^((?:\s*TEST_CASE\s*\(.*?\)\s*)*)\s*void\s+((?:test.*)|(?:spec.*))\s*\(\s*(.*)\s*\)/
         arguments = $1
         name = $2
         call = $3
