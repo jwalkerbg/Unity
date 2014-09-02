@@ -1318,7 +1318,7 @@ void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int
 }
 
 //-----------------------------------------------
-void UnityBegin(unity_void_fn up, unity_void_fn down)
+void UnityBegin(const char* filename, unity_void_fn up, unity_void_fn down)
 {
     //Clear the entire Unity structure
     unsigned char i;
@@ -1327,6 +1327,7 @@ void UnityBegin(unity_void_fn up, unity_void_fn down)
     for (i = 0; i < sizeof(Unity); i++) {
         *Buffer++ = 0;
     }
+    Unity.TestFile = filename;
     Unity.setUp = up;
     Unity.tearDown = down;
 }

@@ -334,7 +334,7 @@ extern struct _Unity Unity;
 // Test Suite Management
 //-------------------------------------------------------
 
-void UnityBegin(unity_void_fn up, unity_void_fn down);
+void UnityBegin(const char* filename, unity_void_fn up, unity_void_fn down);
 int  UnityEnd(void);
 void UnityConcludeTest(void);
 void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int FuncLineNum);

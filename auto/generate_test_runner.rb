@@ -302,8 +302,7 @@ class UnityTestRunnerGenerator
 
     output.puts("{")
     output.puts("  suite_setup();") unless @options[:suite_setup].nil?
-    output.puts("  UnityBegin(setUp,tearDown);")
-    output.puts("  Unity.TestFile = \"#{filename}\";")
+    output.puts("  UnityBegin(\"#{filename}\",setUp,tearDown);")
     if (@options[:use_param_tests])
       tests.each do |test|
         if ((test[:args].nil?) or (test[:args].empty?))
