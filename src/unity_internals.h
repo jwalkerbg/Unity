@@ -522,6 +522,12 @@ UNITY_BOOL UnityAssertDoubleIsNaN(const _UD actual,
 #endif
 
 //-------------------------------------------------------
+// Error Strings We Might Need
+//-------------------------------------------------------
+
+extern const char* UnityStrErr64;
+
+//-------------------------------------------------------
 // Basic Fail and Ignore
 //-------------------------------------------------------
 
@@ -638,6 +644,24 @@ UNITY_BOOL UnityAssertDoubleIsNaN(const _UD actual,
 #define UNITY_TEST_ASSERT_INT64_WITHIN(delta, expected, actual, line, message)                   if (UnityAssertNumbersWithin((_U_SINT)(delta), (_U_SINT)(expected), (_U_SINT)(actual), NULL, (UNITY_LINE_TYPE)line, UNITY_DISPLAY_STYLE_INT64) != 0) return;
 #define UNITY_TEST_ASSERT_UINT64_WITHIN(delta, expected, actual, line, message)                  if (UnityAssertNumbersWithin((_U_SINT)(delta), (_U_SINT)(expected), (_U_SINT)(actual), NULL, (UNITY_LINE_TYPE)line, UNITY_DISPLAY_STYLE_UINT64) != 0) return;
 #define UNITY_TEST_ASSERT_HEX64_WITHIN(delta, expected, actual, line, message)                   if (UnityAssertNumbersWithin((_U_SINT)(delta), (_U_SINT)(expected), (_U_SINT)(actual), NULL, (UNITY_LINE_TYPE)line, UNITY_DISPLAY_STYLE_HEX64) != 0) return;
+#else
+#define UNITY_TEST_ASSERT_EQUAL_INT64(expected, actual, line, message)                           UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_EQUAL_UINT64(expected, actual, line, message)                          UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_EQUAL_HEX64(expected, actual, line, message)                           UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_GREATER_INT64(border, actual, line, message)                           UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_GREATER_OR_EQUAL_INT64(border, actual, line, message)                  UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_LESS_OR_EQUAL_INT64(border, actual, line, message)                     UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_LESS_INT64(border, actual, line, message)                              UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_GREATER_UINT64(border, actual, line, message)                          UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_GREATER_OR_EQUAL_UINT64(border, actual, line, message)                 UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_LESS_OR_EQUAL_UINT64(border, actual, line, message)                    UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_LESS_UINT64(border, actual, line, message)                             UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_EQUAL_INT64_ARRAY(expected, actual, num_elements, line, message)       UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_EQUAL_UINT64_ARRAY(expected, actual, num_elements, line, message)      UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_EQUAL_HEX64_ARRAY(expected, actual, num_elements, line, message)       UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_INT64_WITHIN(delta, expected, actual, line, message)                   UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_UINT64_WITHIN(delta, expected, actual, line, message)                  UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
+#define UNITY_TEST_ASSERT_HEX64_WITHIN(delta, expected, actual, line, message)                   UNITY_TEST_FAIL((UNITY_LINE_TYPE)line, UnityStrErr64)
 #endif
 
 #ifdef UNITY_EXCLUDE_FLOAT

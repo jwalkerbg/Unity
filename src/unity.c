@@ -35,6 +35,7 @@ const char* UnityStrNullPointerForActual  = " Actual pointer was NULL";
 const char* UnityStrInf      = "Infinity";
 const char* UnityStrNegInf   = "Negative Infinity";
 const char* UnityStrNaN      = "NaN";
+const char* UnityStrErr64 = "Unity 64-bit Support Disabled";
 
 #ifndef UNITY_EXCLUDE_FLOAT
 // Dividing by these constants produces +/- infinity.
