@@ -281,7 +281,7 @@ extern int UNITY_OUTPUT_CHAR(int);
 
 #ifndef UNITY_WEAK
 #ifdef UNITY_SUPPORT_WEAK
-#define UNITY_WEAK __attribute__((weak))
+#define UNITY_WEAK UNITY_SUPPORT_WEAK
 #else
 #define UNITY_WEAK
 #endif
