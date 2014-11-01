@@ -24,7 +24,7 @@ class ColourCommandLine
     if RUBY_PLATFORM =~/(win|w)32$/
       get_std_handle = Win32API.new("kernel32", "GetStdHandle", ['L'], 'L')
       @set_console_txt_attrb =
-      Win32API.new("kernel32","SetConsoleTextAttribute",['L','N'], 'I')
+        Win32API.new("kernel32","SetConsoleTextAttribute",['L','N'], 'I')
       @hout = get_std_handle.call(-11)
     end
   end
@@ -62,24 +62,24 @@ class ColourCommandLine
 
 	def posix_colour(colour)
     # ANSI Escape Codes - Foreground colors
-    # | Code | Color |
-    # | 39 | Default foreground color |
-    # | 30 | Black |
-    # | 31 | Red |
-    # | 32 | Green |
-    # | 33 | Yellow |
-    # | 34 | Blue |
-    # | 35 | Magenta |
-    # | 36 | Cyan |
-    # | 37 | Light gray |
-    # | 90 | Dark gray |
-    # | 91 | Light red |
-    # | 92 | Light green |
-    # | 93 | Light yellow |
-    # | 94 | Light blue |
-    # | 95 | Light magenta |
-    # | 96 | Light cyan |
-    # | 97 | White |
+    # | Code | Color                     |
+    # | 39   | Default foreground color  |
+    # | 30   | Black                     |
+    # | 31   | Red                       |
+    # | 32   | Green                     |
+    # | 33   | Yellow                    |
+    # | 34   | Blue                      |
+    # | 35   | Magenta                   |
+    # | 36   | Cyan                      |
+    # | 37   | Light gray                |
+    # | 90   | Dark gray                 |
+    # | 91   | Light red                 |
+    # | 92   | Light green               |
+    # | 93   | Light yellow              |
+    # | 94   | Light blue                |
+    # | 95   | Light magenta             |
+    # | 96   | Light cyan                |
+    # | 97   | White                     |
 
     case colour
       when :black then 30

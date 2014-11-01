@@ -122,9 +122,9 @@ class UnityTestRunnerGenerator
 
     #parse out includes
     includes = source.scan(/^\s*#include\s+\"\s*(.+)\.[hH]\s*\"/).flatten
-	brackets_includes = source.scan(/^\s*#include\s+<\s*(.+)\s*>/).flatten
-	brackets_includes.each { |inc| includes << '<' + inc +'>' }
-	return includes
+    brackets_includes = source.scan(/^\s*#include\s+<\s*(.+)\s*>/).flatten
+    brackets_includes.each { |inc| includes << '<' + inc +'>' }
+    return includes
   end
 
   def find_mocks(includes)
