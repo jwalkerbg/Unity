@@ -285,7 +285,8 @@ void UnityPrintOk(void)
 }
 
 //-----------------------------------------------
-void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
+static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line);
+static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
 {
     UNITY_PRINT_EOL;
     UnityPrint(file);
@@ -297,7 +298,8 @@ void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
 }
 
 //-----------------------------------------------
-void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line)
+static void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line);
+static void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line)
 {
     UnityTestResultsBegin(Unity.TestFile, line);
     UnityPrint(UnityStrFail);
@@ -326,7 +328,8 @@ void UnityConcludeTest(void)
 }
 
 //-----------------------------------------------
-void UnityAddMsgIfSpecified(const char* msg)
+static void UnityAddMsgIfSpecified(const char* msg);
+static void UnityAddMsgIfSpecified(const char* msg)
 {
     if (msg)
     {
@@ -336,7 +339,8 @@ void UnityAddMsgIfSpecified(const char* msg)
 }
 
 //-----------------------------------------------
-void UnityPrintExpectedAndActualStrings(const char* expected, const char* actual)
+static void UnityPrintExpectedAndActualStrings(const char* expected, const char* actual);
+static void UnityPrintExpectedAndActualStrings(const char* expected, const char* actual)
 {
     UnityPrint(UnityStrExpected);
     if (expected != NULL)
@@ -365,8 +369,8 @@ void UnityPrintExpectedAndActualStrings(const char* expected, const char* actual
 //-----------------------------------------------
 // Assertion & Control Helpers
 //-----------------------------------------------
-
-int UnityCheckArraysForNull(UNITY_PTR_ATTRIBUTE const void* expected, UNITY_PTR_ATTRIBUTE const void* actual, const UNITY_LINE_TYPE lineNumber, const char* msg)
+static int UnityCheckArraysForNull(UNITY_PTR_ATTRIBUTE const void* expected, UNITY_PTR_ATTRIBUTE const void* actual, const UNITY_LINE_TYPE lineNumber, const char* msg);
+static int UnityCheckArraysForNull(UNITY_PTR_ATTRIBUTE const void* expected, UNITY_PTR_ATTRIBUTE const void* actual, const UNITY_LINE_TYPE lineNumber, const char* msg)
 {
     //return true if they are both NULL
     if ((expected == NULL) && (actual == NULL))
@@ -1318,8 +1322,8 @@ UNITY_BOOL UnityIgnore(const char* msg, const UNITY_LINE_TYPE line)
 
 //-----------------------------------------------
 #ifdef UNITY_SUPPORT_WEAK
-void setUp(void) { }
-void tearDown(void) { }
+UNITY_WEAK_ATTRIBUTE void setUp(void) { }
+UNITY_WEAK_ATTRIBUTE void tearDown(void) { }
 #else
 void setUp(void);
 void tearDown(void);
