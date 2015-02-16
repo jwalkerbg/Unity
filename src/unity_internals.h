@@ -354,6 +354,7 @@ struct _Unity
     UNITY_COUNTER_TYPE TestIgnores;
     UNITY_COUNTER_TYPE CurrentTestFailed;
     UNITY_COUNTER_TYPE CurrentTestIgnored;
+    UNITY_COUNTER_TYPE NumberOfAssertions;
 };
 
 extern struct _Unity Unity;
