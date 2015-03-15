@@ -46,7 +46,7 @@ const char UnityStrErr64[]                          = "Unity 64-bit Support Disa
 
 const char UnityStrBreaker[]                        = "-----------------------";
 const char UnityStrResultsTests[]                   = " Tests ";
-const char UnityStrResultsAssertions[]              = " Passed assertions ";
+const char UnityStrResultsAssertions[]              = " Assertions ";
 const char UnityStrResultsFailures[]                = " Failures ";
 const char UnityStrResultsIgnored[]                 = " Ignored ";
 
@@ -84,24 +84,26 @@ void UnityPrintOk(void);
 void UnityPrint(const char* string)
 {
     const char* pch = string;
+    unsigned char c;
 
     if (pch != NULL)
     {
-        while (*pch)
+        c = *pch;
+        while (c != '\0')
         {
             // printable characters plus CR & LF are printed
-            if ((*pch <= 126) && (*pch >= 32))
+            if ((c <= 126) && (c >= 32))
             {
-                UNITY_OUTPUT_CHAR(*pch);
+                UNITY_OUTPUT_CHAR(c);
             }
             //write escaped carriage returns
-            else if (*pch == 13)
+            else if (c == 13)
             {
                 UNITY_OUTPUT_CHAR('\\');
                 UNITY_OUTPUT_CHAR('r');
             }
             //write escaped line feeds
-            else if (*pch == 10)
+            else if (c == 10)
             {
                 UNITY_OUTPUT_CHAR('\\');
                 UNITY_OUTPUT_CHAR('n');
@@ -110,9 +112,9 @@ void UnityPrint(const char* string)
             else
             {
                 UNITY_OUTPUT_CHAR('\\');
-                UnityPrintNumberHex((_U_UINT)*pch, 2);
+                UnityPrintNumberHex((_U_UINT)c, 2);
             }
-            pch++;
+            c = *(++pch);
         }
     }
 }
@@ -289,7 +291,6 @@ void UnityPrintOk(void)
 static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line);
 static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
 {
-    UNITY_PRINT_EOL;
     UnityPrint(file);
     UNITY_OUTPUT_CHAR(':');
     UnityPrintNumber((_U_SINT)line);
