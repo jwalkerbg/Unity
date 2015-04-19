@@ -23,12 +23,11 @@
 //       - define UNITY_INT_WIDTH, UNITY_LONG_WIDTH, nand UNITY_POINTER_WIDTH
 
 // Floats
-//     - define UNITY_EXCLUDE_FLOAT to disallow floating point comparisons
+//     - define UNITY_INCLUDE_FLOAT to allow floating point comparisons
 //     - define UNITY_FLOAT_PRECISION to specify the precision to use when doing TEST_ASSERT_EQUAL_FLOAT
 //     - define UNITY_FLOAT_TYPE to specify doubles instead of single precision floats
 //     - define UNITY_FLOAT_VERBOSE to print floating point values in errors (uses sprintf)
 //     - define UNITY_INCLUDE_DOUBLE to allow double floating point comparisons
-//     - define UNITY_EXCLUDE_DOUBLE to disallow double floating point comparisons (default)
 //     - define UNITY_DOUBLE_PRECISION to specify the precision to use when doing TEST_ASSERT_EQUAL_DOUBLE
 //     - define UNITY_DOUBLE_TYPE to specify something other than double
 //     - define UNITY_DOUBLE_VERBOSE to print floating point values in errors (uses sprintf)

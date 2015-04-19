@@ -52,14 +52,17 @@ const char UnityStrResultsAssertions[]              = " Assertions ";
 const char UnityStrResultsFailures[]                = " Failures ";
 const char UnityStrResultsIgnored[]                 = " Ignored ";
 
-#ifndef UNITY_EXCLUDE_FLOAT
+#if defined(UNITY_INCLUDE_FLOAT)
 // Dividing by these constants produces +/- infinity.
-// The rationale is given in UnityAssertFloatIsInf's body.
+// The rationale is given in UnityAssertFloatSpecial's body.
 _UF f_zero = 0.0f;
-#ifndef UNITY_EXCLUDE_DOUBLE
+#endif  // defined(UNITY_INCLUDE_FLOAT)
+
+#if defined(UNITY_INCLUDE_DOUBLE)
+// Dividing by these constants produces +/- infinity.
+// The rationale is given in UnityAssertDoubleSpecial's body.
 _UD d_zero = 0.0;
-#endif
-#endif
+#endif  // defined(UNITY_INCLUDE_DOUBLE)
 
 // compiler-generic print formatting masks
 const _U_UINT UnitySizeMask[] =
@@ -736,7 +739,7 @@ UNITY_BOOL UnityAssertEqualIntArray(UNITY_PTR_ATTRIBUTE const void* expected,
 }
 
 //-----------------------------------------------
-#ifndef UNITY_EXCLUDE_FLOAT
+#if defined(UNITY_INCLUDE_FLOAT)
 UNITY_BOOL UnityAssertEqualFloatArray(UNITY_PTR_ATTRIBUTE const _UF* expected,
                                 UNITY_PTR_ATTRIBUTE const _UF* actual,
                                 const _UU32 num_elements,
@@ -896,10 +899,10 @@ UNITY_BOOL UnityAssertFloatSpecial(const _UF actual,
     }
     return 0;
 }
-#endif //not UNITY_EXCLUDE_FLOAT
+#endif // defined(UNITY_INCLUDE_FLOAT)
 
 //-----------------------------------------------
-#ifndef UNITY_EXCLUDE_DOUBLE
+#if defined(UNITY_INCLUDE_DOUBLE)
 UNITY_BOOL UnityAssertEqualDoubleArray(UNITY_PTR_ATTRIBUTE const _UD* expected,
                                  UNITY_PTR_ATTRIBUTE const _UD* actual,
                                  const _UU32 num_elements,
@@ -1060,7 +1063,7 @@ UNITY_BOOL UnityAssertDoubleSpecial(const _UD actual,
     return 0;
 }
 
-#endif // not UNITY_EXCLUDE_DOUBLE
+#endif // defined(UNITY_INCLUDE_DOUBLE)
 
 //-----------------------------------------------
 UNITY_BOOL UnityAssertNumbersWithin( const _U_SINT delta,
