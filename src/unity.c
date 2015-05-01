@@ -293,8 +293,8 @@ void UnityPrintOk(void)
 }
 
 //-----------------------------------------------
-static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line);
-static void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
+
+void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line)
 {
     UnityPrint(file);
     UNITY_OUTPUT_CHAR(':');
