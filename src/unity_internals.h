@@ -467,6 +467,12 @@ UNITY_BOOL UnityAssertEqualString(const char* expected,
                             const char* msg,
                             const UNITY_LINE_TYPE lineNumber);
 
+UNITY_BOOL UnityAssertEqualStringLen(const char* expected,
+                            const char* actual,
+                            const _UU32 length,
+                            const char* msg,
+                            const UNITY_LINE_TYPE lineNumber);
+
 UNITY_BOOL UnityAssertEqualStringArray( const char** expected,
                                   const char** actual,
                                   const _UU32 num_elements,
@@ -619,6 +625,7 @@ extern const char UnityStrErr64[];
 
 #define UNITY_TEST_ASSERT_EQUAL_PTR(expected, actual, line, message)                             if (UnityAssertEqualNumber((_U_SINT)(_UP)(expected), (_U_SINT)(_UP)(actual), (message), (UNITY_LINE_TYPE)line, UNITY_DISPLAY_STYLE_POINTER) != 0) return;
 #define UNITY_TEST_ASSERT_EQUAL_STRING(expected, actual, line, message)                          if (UnityAssertEqualString((const char*)(expected), (const char*)(actual), (message), (UNITY_LINE_TYPE)line) != 0) return;
+#define UNITY_TEST_ASSERT_EQUAL_STRING_LEN(expected, actual, len, line, message)                 if (UnityAssertEqualStringLen((const char*)(expected), (const char*)(actual), (_UU32)(len), (message), (UNITY_LINE_TYPE)line) != 0) return;
 #define UNITY_TEST_ASSERT_EQUAL_MEMORY(expected, actual, len, line, message)                     if (UnityAssertEqualMemory((UNITY_PTR_ATTRIBUTE void*)(expected), (UNITY_PTR_ATTRIBUTE void*)(actual), (_UU32)(len), 1, (message), (UNITY_LINE_TYPE)line) != 0) return;
 
 #define UNITY_TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, num_elements, line, message)         if (UnityAssertEqualIntArray((UNITY_PTR_ATTRIBUTE const void*)(expected), (UNITY_PTR_ATTRIBUTE const void*)(actual), (_UU32)(num_elements), (message), (UNITY_LINE_TYPE)line, UNITY_DISPLAY_STYLE_INT) != 0) return;
