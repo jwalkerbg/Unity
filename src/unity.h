@@ -9,7 +9,15 @@
 
 #define UNITY
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #include "unity_internals.h"
+
+void setUp(void);
+void tearDown(void);
 
 //-------------------------------------------------------
 // Configuration Options
@@ -379,4 +387,9 @@
 #define TEST_ASSERT_DOUBLE_IS_NOT_NEG_INF_MESSAGE(actual, message)                                 UNITY_TEST_ASSERT_DOUBLE_IS_NOT_NEG_INF((actual), __LINE__, (message))
 #define TEST_ASSERT_DOUBLE_IS_NOT_NAN_MESSAGE(actual, message)                                     UNITY_TEST_ASSERT_DOUBLE_IS_NOT_NAN((actual), __LINE__, (message))
 #define TEST_ASSERT_DOUBLE_IS_NOT_DETERMINATE_MESSAGE(actual, message)                             UNITY_TEST_ASSERT_DOUBLE_IS_NOT_DETERMINATE((actual), __LINE__, (message))
+
+//end of UNITY_FRAMEWORK_H
+#ifdef __cplusplus
+}
+#endif
 #endif
