@@ -1486,3 +1486,17 @@ int UnityEnd(void)
     UNITY_OUTPUT_COMPLETE();
     return (int)(Unity.TestFailures);
 }
+
+//-----------------------------------------------
+void UnitySetFileName(const char* filename)
+{
+    Unity.TestFile = filename;
+}
+
+//-----------------------------------------------
+void UnitySetContext(const char* filename, unity_void_fn up, unity_void_fn down)
+{
+    Unity.TestFile = filename;
+    Unity.setUp = up;
+    Unity.tearDown = down;
+}

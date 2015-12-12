@@ -365,6 +365,8 @@ extern struct _Unity Unity;
 
 void UnityBegin(const char* filename, unity_void_fn up, unity_void_fn down);
 int  UnityEnd(void);
+void UnitySetFileName(const char* filename);
+void UnitySetContext(const char* filename, unity_void_fn up, unity_void_fn down);
 void UnityConcludeTest(void);
 void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int FuncLineNum);
 void UnityTestResultsBegin(const char* file, const UNITY_LINE_TYPE line);
