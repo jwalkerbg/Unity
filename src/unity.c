@@ -1132,7 +1132,7 @@ UNITY_BOOL UnityAssertDoubleSpecial(const _UD actual,
 #endif // defined(UNITY_INCLUDE_DOUBLE)
 
 //-----------------------------------------------
-UNITY_BOOL UnityAssertNumbersWithin( const _U_SINT delta,
+UNITY_BOOL UnityAssertNumbersWithin( const _U_UINT delta,
                                const _U_SINT expected,
                                const _U_SINT actual,
                                const char* msg,
@@ -1144,23 +1144,23 @@ UNITY_BOOL UnityAssertNumbersWithin( const _U_SINT delta,
     if ((style & UNITY_DISPLAY_RANGE_INT) == UNITY_DISPLAY_RANGE_INT)
     {
         if (actual > expected)
-          Unity.CurrentTestFailed = ((actual - expected) > delta);
+            Unity.CurrentTestFailed = ((_U_UINT)(actual - expected) > delta);
         else
-          Unity.CurrentTestFailed = ((expected - actual) > delta);
+            Unity.CurrentTestFailed = ((_U_UINT)(expected - actual) > delta);
     }
     else
     {
         if ((_U_UINT)actual > (_U_UINT)expected)
-            Unity.CurrentTestFailed = ((_U_UINT)(actual - expected) > (_U_UINT)delta);
+            Unity.CurrentTestFailed = ((_U_UINT)(actual - expected) > delta);
         else
-            Unity.CurrentTestFailed = ((_U_UINT)(expected - actual) > (_U_UINT)delta);
+            Unity.CurrentTestFailed = ((_U_UINT)(expected - actual) > delta);
     }
 
     if (Unity.CurrentTestFailed)
     {
         UnityTestResultsFailBegin(lineNumber);
         UnityPrint(UnityStrDelta);
-        UnityPrintNumberByStyle(delta, style);
+        UnityPrintNumberByStyle((_U_SINT)delta, style);
         UnityPrint(UnityStrExpected);
         UnityPrintNumberByStyle(expected, style);
         UnityPrint(UnityStrWas);
