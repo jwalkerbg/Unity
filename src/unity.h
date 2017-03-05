@@ -164,6 +164,31 @@ void tearDown(void);
 #define TEST_ASSERT_LESS_UINT32(border, actual)                                                    UNITY_TEST_ASSERT_LESS_UINT32((border), (actual), __LINE__, NULL)
 #define TEST_ASSERT_LESS_UINT64(border, actual)                                                    UNITY_TEST_ASSERT_LESS_UINT64((border), (actual), __LINE__, NULL)
 
+// Integers hexadecimal compares (of all sizes)
+#define TEST_ASSERT_GREATER_HEX(border,actual)                                                     UNITY_TEST_ASSERT_GREATER_HEX((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_HEX8(border,actual)                                                    UNITY_TEST_ASSERT_GREATER_HEX8((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_HEX16(border,actual)                                                   UNITY_TEST_ASSERT_GREATER_HEX16((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_HEX32(border,actual)                                                   UNITY_TEST_ASSERT_GREATER_HEX32((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_HEX64(border,actual)                                                   UNITY_TEST_ASSERT_GREATER_HEX64((border), (actual), __LINE__, NULL)
+// ---
+#define TEST_ASSERT_GREATER_OR_EQUAL_HEX(border,actual)                                            UNITY_TEST_ASSERT_GREATER_OR_EQUAL_HEX((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_OR_EQUAL_HEX8(border,actual)                                           UNITY_TEST_ASSERT_GREATER_OR_EQUAL_HEX8((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_OR_EQUAL_HEX16(border,actual)                                          UNITY_TEST_ASSERT_GREATER_OR_EQUAL_HEX16((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_OR_EQUAL_HEX32(border,actual)                                          UNITY_TEST_ASSERT_GREATER_OR_EQUAL_HEX32((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_GREATER_OR_EQUAL_HEX64(border,actual)                                          UNITY_TEST_ASSERT_GREATER_OR_EQUAL_HEX64((border), (actual), __LINE__, NULL)
+// ---
+#define TEST_ASSERT_LESS_OR_EQUAL_HEX(border,actual)                                               UNITY_TEST_ASSERT_LESS_OR_EQUAL_HEX((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_OR_EQUAL_HEX8(border,actual)                                              UNITY_TEST_ASSERT_LESS_OR_EQUAL_HEX8((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_OR_EQUAL_HEX16(border,actual)                                             UNITY_TEST_ASSERT_LESS_OR_EQUAL_HEX16((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_OR_EQUAL_HEX32(border,actual)                                             UNITY_TEST_ASSERT_LESS_OR_EQUAL_HEX32((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_OR_EQUAL_HEX64(border,actual)                                             UNITY_TEST_ASSERT_LESS_OR_EQUAL_HEX64((border), (actual), __LINE__, NULL)
+// ---
+#define TEST_ASSERT_LESS_HEX(border,actual)                                                        UNITY_TEST_ASSERT_LESS_HEX((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_HEX8(border,actual)                                                       UNITY_TEST_ASSERT_LESS_HEX8((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_HEX16(border,actual)                                                      UNITY_TEST_ASSERT_LESS_HEX16((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_HEX32(border,actual)                                                      UNITY_TEST_ASSERT_LESS_HEX32((border), (actual), __LINE__, NULL)
+#define TEST_ASSERT_LESS_HEX64(border,actual)                                                      UNITY_TEST_ASSERT_LESS_HEX64((border), (actual), __LINE__, NULL)
+
 //Integer Ranges (of all sizes)
 #define TEST_ASSERT_INT_WITHIN(delta, expected, actual)                                            UNITY_TEST_ASSERT_INT_WITHIN((delta), (expected), (actual), __LINE__, NULL)
 #define TEST_ASSERT_INT8_WITHIN(delta, expected, actual)                                           UNITY_TEST_ASSERT_INT8_WITHIN((delta), (expected), (actual), __LINE__, NULL)
