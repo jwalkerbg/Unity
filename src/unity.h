@@ -86,7 +86,9 @@ void tearDown(void);
 #define TEST_ASSERT(condition)                                                                     UNITY_TEST_ASSERT(       (condition), __LINE__, " Expression Evaluated To FALSE")
 #define TEST_ASSERT_TRUE(condition)                                                                UNITY_TEST_ASSERT(       (condition), __LINE__, " Expected TRUE Was FALSE")
 #define TEST_ASSERT_UNLESS(condition)                                                              UNITY_TEST_ASSERT(      !(condition), __LINE__, " Expression Evaluated To TRUE")
+#define TEST_ASSERT_HIGHSTATE(condition)                                                           UNITY_TEST_ASSERT(       (condition), __LINE__, " Expected \'highstate\' Was \'lowstate\'")
 #define TEST_ASSERT_FALSE(condition)                                                               UNITY_TEST_ASSERT(      !(condition), __LINE__, " Expected FALSE Was TRUE")
+#define TEST_ASSERT_LOWSTATE(condition)                                                            UNITY_TEST_ASSERT(      !(condition), __LINE__, " Expected \'lowstate\' Was \'highstate\'")
 #define TEST_ASSERT_NULL(pointer)                                                                  UNITY_TEST_ASSERT_NULL(    (pointer), __LINE__, " Expected NULL")
 #define TEST_ASSERT_NOT_NULL(pointer)                                                              UNITY_TEST_ASSERT_NOT_NULL((pointer), __LINE__, " Expected Non-NULL")
 
@@ -265,8 +267,10 @@ void tearDown(void);
 //Boolean
 #define TEST_ASSERT_MESSAGE(condition, message)                                                    UNITY_TEST_ASSERT(       (condition), __LINE__, (message))
 #define TEST_ASSERT_TRUE_MESSAGE(condition, message)                                               UNITY_TEST_ASSERT(       (condition), __LINE__, (message))
+#define TEST_ASSERT_HIGHSTATE_MESSAGE(condition, message)                                          UNITY_TEST_ASSERT(       (condition), __LINE__, (message))
 #define TEST_ASSERT_UNLESS_MESSAGE(condition, message)                                             UNITY_TEST_ASSERT(      !(condition), __LINE__, (message))
 #define TEST_ASSERT_FALSE_MESSAGE(condition, message)                                              UNITY_TEST_ASSERT(      !(condition), __LINE__, (message))
+#define TEST_ASSERT_LOWSTATE_MESSAGE(condition, message)                                           UNITY_TEST_ASSERT(      !(condition), __LINE__, (message))
 #define TEST_ASSERT_NULL_MESSAGE(pointer, message)                                                 UNITY_TEST_ASSERT_NULL(    (pointer), __LINE__, (message))
 #define TEST_ASSERT_NOT_NULL_MESSAGE(pointer, message)                                             UNITY_TEST_ASSERT_NOT_NULL((pointer), __LINE__, (message))
 
